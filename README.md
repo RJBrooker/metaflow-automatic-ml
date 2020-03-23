@@ -16,7 +16,7 @@ Its build using Metaflow, MITs Deep Feature Synthesis (Featuretools), and Stanfo
 
 Deep Feature Synthesis (DFS) is an automated method for performing feature engineering on relational and temporal data.
 
-### Nature Gradient Booosting? 
+### Natural Gradient Booosting? 
 
 Gradient Boosting is a robust out of the box classifier that can learn complex non-linear decision boundaries, without having to worry about feature selection or colinearity.
 

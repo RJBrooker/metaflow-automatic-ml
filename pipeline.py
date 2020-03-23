@@ -32,7 +32,6 @@ class ModelPipeline(FlowSpec):
     @step
     def start(self):
         """ 01. Initialise the data paths and transformation functions.  """
-        
         self.data_dir = '../data/raw_data'
         self.trans_primitives = [ 'weekday'  , 'hour', 'time_since_previous'] 
         self.agg_primitives = ['mean', 'max', 'min', 'std', 'count',  'percent_true', 'last', 'time_since_last', 'mode']
@@ -40,6 +39,8 @@ class ModelPipeline(FlowSpec):
         self.feature_windows = [10, 30, 60 , 90 ] #[10,20,30]
         self.max_feature_depth = 2
         self.next( self.load_raw_data )
+    
+    
     
     
     @step
@@ -70,6 +71,8 @@ class ModelPipeline(FlowSpec):
     
     
     
+    
+    
     @step
     def generate_target_variable(self):
         """ 04. Calculate the target variable for the 30 day period after the user "cut-off datetime"."""
@@ -79,6 +82,7 @@ class ModelPipeline(FlowSpec):
             label = self.transactions.query(' 0 > days_before_cutoff >= -30 ').groupby('user_id').amount_usd.sum() 
         ).label.fillna(0) > 0).astype(int)
         self.next( self.generate_entity_set )
+    
     
     
     
@@ -99,6 +103,8 @@ class ModelPipeline(FlowSpec):
             self.es = self.es.add_relationship(ft.Relationship(self.es['users']['user_id'], self.es[f'transactions_{d}d']['user_id']))
         
         self.next( self.generate_features )
+    
+    
     
     
     
@@ -133,6 +139,7 @@ class ModelPipeline(FlowSpec):
         self.next( self.fit_model )
     
     
+    
     @step 
     def fit_model(self):
         """ 09. Fit natural gradient boosting model. """
@@ -147,9 +154,12 @@ class ModelPipeline(FlowSpec):
     
     
     
+    
     def mdl_(self):
         """ A hack to fixes the pickling problem; """
         return cloudpickle.loads(self.mdl)
+    
+    
     
     
     
@@ -165,7 +175,6 @@ class ModelPipeline(FlowSpec):
         self.train_roc = roc_auc_score(self.y_train.astype(int) , self.train_preds)
         
         self.next( self.generate_shap_values )
-    
     
     
     
