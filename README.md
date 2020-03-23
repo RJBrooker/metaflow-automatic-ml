@@ -3,10 +3,12 @@
 ![Drag Racing](https://i.ibb.co/r4MzCNV/Screen-Shot-2020-03-18-at-12-57-51-PM.png)
 
 
-This repo contains a lightweight modelig pipeling, using MITs Deep Feature Synthesis (Featuretools), and Stanfords Probabilistic gradient boosting (NGBoost). It is is a fast, automated, state-of-the-art and production ready solution. 
+This repo contains a powerful, minimalistic, state-of-the-art, automated modeling pipeling. 
+
+Its build using Metaflow, MITs Deep Feature Synthesis (Featuretools), and Stanfords Probabilistic gradient boosting (NGBoost). It is fast, scalable and  production ready. 
 
 
-![Drag Racing](https://i.ibb.co/N2rPxqp/Screen-Shot-2020-03-23-at-1-14-01-PM.png)
+![Drag Racing](https://i.ibb.co/VWSnbZp/Screen-Shot-2020-03-23-at-1-23-18-PM.png)
 
 
 
