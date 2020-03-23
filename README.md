@@ -8,7 +8,7 @@ This repo contains a powerful, minimalistic, state-of-the-art, automated modelin
 Its build using Metaflow, MITs Deep Feature Synthesis (Featuretools), and Stanfords Probabilistic gradient boosting (NGBoost). It is fast, scalable and  production ready. 
 
 
-![Drag Racing](https://i.ibb.co/VWSnbZp/Screen-Shot-2020-03-23-at-1-23-18-PM.png=150px )
+![Drag Racing](https://i.ibb.co/QftPB2Z/Screen-Shot-2020-03-23-at-1-33-16-PM.png=150px )
 
 
 
