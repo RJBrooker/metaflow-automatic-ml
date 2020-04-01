@@ -20,7 +20,7 @@ Deep Feature Synthesis (DFS) is an automated method for performing feature engin
 
 Gradient Boosting is a robust out of the box classifier that can learn complex non-linear decision boundaries, without having to worry about feature selection or colinearity.
 
-It generally its been among the top performers in predictive accuracy over structured or tabular input data, typically yielding good accuracy, precision, and ROC area. However, because XGBoost/Catboost/LiteGBM do not solve the log-loss/corss-entropy objective directly, the outputs do not represent an accurate posterior probabilities. The results is poor squared error and cross-entropy.
+In generally its been among the top performers in predictive accuracy over structured or tabular input data, typically yielding good accuracy, precision, and ROC area. However, because XGBoost/Catboost/LiteGBM do not solve the log-loss/corss-entropy objective directly, the outputs do not represent an accurate posterior probabilities. The results is poor squared error and cross-entropy.
 
 NGBoost on is a state of the art solution (13 Feb 2020) using Probabilistic gradient boosting via Natural Gradients. Its output is a prediction of the posterior probability. This necessary for automated decision making, where you might want to use a cutt-off on the probability prediction.
 
