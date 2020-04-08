@@ -17,7 +17,21 @@ import cloudpickle
 
 from functools import wraps
 from typing import Callable, Any,Optional
-
+from catboost import CatBoostClassifier
+from sklearn.neural_network import MLPClassifier
+from lightgbm import LGBMClassifier
+from sklearn.tree import DecisionTreeClassifier, ExtraTreeClassifier
+from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier, BaggingClassifier, GradientBoostingClassifier, StackingClassifier,ExtraTreesClassifier
+from sklearn.gaussian_process import GaussianProcessClassifier
+from sklearn.linear_model import PassiveAggressiveClassifier, RidgeClassifier,  SGDClassifier, LogisticRegressionCV
+from sklearn.semi_supervised import LabelPropagation
+from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
+from sklearn.neighbors import KNeighborsClassifier, RadiusNeighborsClassifier, NearestCentroid
+from sklearn.naive_bayes import GaussianNB
+from sklearn.svm import SVC
+from ngboost import NGBClassifier
+from ngboost.distns import Bernoulli
+        
 
 
 
@@ -140,17 +154,50 @@ class ModelPipeline(FlowSpec):
     
     
     
+    
+    
     @step 
     def fit_model(self):
-        """ 09. Fit natural gradient boosting model. """
+        """ 09. Fit our stacked classifier gradient boosting model. """
         
-        from ngboost import NGBClassifier
-        from ngboost.distns import Bernoulli
+        ### Define Classifiers 
+        estimators = [
+           ('cbc', CatBoostClassifier()),
+           ('lgbmc', LGBMClassifier()),
+           ('gbc', GradientBoostingClassifier(validation_fraction=0.15, n_iter_no_change=50 )),
+           ('et', ExtraTreeClassifier() ),
+           ('abc', AdaBoostClassifier()),
+           ('rfc', RandomForestClassifier()),
+           ('bc', BaggingClassifier() ),
+           ('etc', ExtraTreesClassifier()),
+           ('gnb', GaussianNB()),
+           ('mlpc', MLPClassifier()),
+           ('gpc', GaussianProcessClassifier()),
+           ('dtc', DecisionTreeClassifier()),
+           ('qda', QuadraticDiscriminantAnalysis()),
+           ('lr', LogisticRegression()),
+           ('knn3', KNeighborsClassifier(3)),
+           ('knn6', KNeighborsClassifier(6)),
+           ('knn12', KNeighborsClassifier(12)),
+           ('nc', NearestCentroid()),
+           ('rnc', RadiusNeighborsClassifier()),
+           ('lp', LabelPropagation()),
+           ('pac', PassiveAggressiveClassifier()), 
+           ('rc', RidgeClassifier()), 
+           ('sgdc', SGDClassifier()),
+           ('svg', SVC()), 
+           ('ngbc', NGBClassifier(Dist=Bernoulli))
+        ]
         
-        mdl = NGBClassifier(Dist=Bernoulli)
+        mdl = StackingClassifier(
+             estimators=estimators, final_estimator=LogisticRegressionCV(10)
+        )
+        
         mdl.fit( self.X_train, self.y_train , X_val=self.X_val, Y_val=self.y_val ,  sample_weight=self.w_train, val_sample_weight=self.w_val, early_stopping_rounds=100)
         self.mdl = cloudpickle.dumps(mdl)
         self.next( self.compute_roc )
+    
+    
     
     
     
@@ -167,13 +214,10 @@ class ModelPipeline(FlowSpec):
     def compute_roc(self):  
         """ 10. Calculate AUC scores. """
         from sklearn.metrics import roc_auc_score
-        
-        self.test_preds = self.mdl_().pred_dist(self.X_test).probs[1]
-        self.train_preds = self.mdl_().pred_dist(self.X_train).probs[1]
-        
+        self.test_preds  = self.mdl_().predict_proba(self.X_test )[:,1]
+        self.train_preds = self.mdl_().predict_proba(self.X_train)[:,1]
         self.test_roc = roc_auc_score(self.y_test.astype(int) , self.test_preds)
         self.train_roc = roc_auc_score(self.y_train.astype(int) , self.train_preds)
-        
         self.next( self.generate_shap_values )
     
     
