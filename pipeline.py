@@ -14,7 +14,6 @@ import feather
 import shap
 import cloudpickle
 
-
 from functools import wraps
 from typing import Callable, Any,Optional
 from catboost import CatBoostClassifier
@@ -31,7 +30,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
 from ngboost import NGBClassifier
 from ngboost.distns import Bernoulli
-        
+from sklearn.inspection import permutation_importance
 
 
 
@@ -223,10 +222,9 @@ class ModelPipeline(FlowSpec):
     
     
     @step 
-    def generate_shap_values(self):
-        """ 11. Generate shap values. """
-        explainer = shap.TreeExplainer(self.mdl_(), model_output=0) # use model_output = 1 for scale trees
-        self.shap_values = explainer.shap_values(self.X_train)
+    def generate_permutation_importance(self):
+        """ 11. Generate permutation importance. """
+        self.permutation_importance = permutation_importance(self.mdl_(), self.X_train, self.X_ttest )
         self.next( self.end )
     
     
