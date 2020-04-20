@@ -40,3 +40,6 @@ In generally its been among the top performers in predictive accuracy over struc
 
 NGBoost on is a state of the art solution (13 Feb 2020) using Probabilistic gradient boosting via Natural Gradients. Its output is a prediction of the posterior probability. This necessary for automated decision making, where you might want to use a cutt-off on the probability prediction.
 
+### Stacking? 
+
+Stacking is an ensemble learning technique that combines multiple classification or regression models via a meta-classifier or a meta-regressor
