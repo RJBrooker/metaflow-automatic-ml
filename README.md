@@ -1,9 +1,9 @@
 # metaflow-automatic-ml
+This repo is a powerful, minimalistic, state-of-the-art, automated modeling pipeline. 
 
 ![Drag Racing](https://i.ibb.co/r4MzCNV/Screen-Shot-2020-03-18-at-12-57-51-PM.png)
 
 
-This repo is a powerful, minimalistic, state-of-the-art, automated modeling pipeline. 
 
 Its built using Metaflow, MITs Deep Feature Synthesis (Featuretools), Stanfords Probabilistic gradient boosting (NGBoost) and  StackingClassifier. It is fast, scalable and production ready. 
 
