@@ -5,11 +5,24 @@
 
 This repo is a powerful, minimalistic, state-of-the-art, automated modeling pipeline. 
 
-Its build using Metaflow, MITs Deep Feature Synthesis (Featuretools), and Stanfords Probabilistic gradient boosting (NGBoost). It is fast, scalable and  production ready. 
+Its built using Metaflow, MITs Deep Feature Synthesis (Featuretools), Stanfords Probabilistic gradient boosting (NGBoost) and  StackingClassifier. It is fast, scalable and production ready. 
 
+### Motivation
+
+There are a number of fantastically powerful toolkit for building complex ML systems quickly. However it is dangerous to think of these quick wins as coming for free. It is remarkably easy to incur massive ongoing maintenance costs at the system level when applying machine learning. There are many machine learning specific risk factors and design patterns that should be avoided when possible. 
 
 ![Drag Racing](https://i.ibb.co/QftPB2Z/Screen-Shot-2020-03-23-at-1-33-16-PM.png=150px )
 
+The aim of this repository is to create a simple, power and maintainable classifier using Metaflow. 
+
+### How to run? 
+
+Its easy to run, 
+```
+python src/engagment_model_pipeline.py run  
+```
+
+![Drag Racing](https://i.ibb.co/r4MzCNV/Screen-Shot-2020-03-18-at-12-57-51-PM.png)
 
 
 ### Deep Feature Synthesis?
