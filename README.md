@@ -9,7 +9,7 @@ Its built using Metaflow, MITs Deep Feature Synthesis (Featuretools), Stanfords 
 
 ### Motivation
 
-There are a number of fantastically powerful toolkit for building complex ML systems quickly. However it is dangerous to think of these quick wins as coming for free. It is remarkably easy to incur massive ongoing maintenance costs at the system level when applying machine learning. There are many machine learning specific risk factors and design patterns that should be avoided when possible. 
+There are a number of powerful toolkits that make building machine learning systems quickly. However it is dangerous to think of these quick wins as coming for free. It is remarkably easy to incur massive ongoing maintenance costs at the system level when applying machine learning. There are many machine learning specific risk factors and design patterns that should be avoided when possible. 
 
 <p align="center">
 
