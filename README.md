@@ -5,7 +5,7 @@ This repo is a powerful, minimalistic, state-of-the-art, automated modeling pipe
 
 
 
-Its built using Metaflow, MITs Deep Feature Synthesis (Featuretools), Stanfords Probabilistic gradient boosting (NGBoost) and  StackingClassifier. It is fast, scalable and production ready. 
+Its built using Metaflow, MITs Deep Feature Synthesis (Featuretools), Stanfords Probabilistic gradient boosting (NGBoost) and  Sci-kit learns StackingClassifier. It is fast, scalable and production ready. 
 
 ### Motivation
 
