@@ -9,16 +9,12 @@ Its built using Metaflow, MITs Deep Feature Synthesis (Featuretools), Stanfords 
 
 ### Motivation
 
-There are a number of powerful toolkits that make building machine learning systems quickly. However it is dangerous to think of these quick wins as coming for free. It is remarkably easy to incur massive ongoing maintenance costs at the system level when applying machine learning. There are many machine learning specific risk factors and design patterns that should be avoided when possible. 
 
 <p align="center">
-
 <img src="https://i.ibb.co/smz6Y4r/metaflow-docs-1.gif" width="500"   >
 </p>
 
-
-
-
+There are a number of powerful toolkits that make building machine learning systems quickly. However it is dangerous to think of these quick wins as coming for free. It is remarkably easy to incur massive ongoing maintenance costs at the system level when applying machine learning. There are many machine learning specific risk factors and design patterns that should be avoided when possible. 
 
 The aim of this repository is to create a simple, power and maintainable classifier using Metaflow. 
 
